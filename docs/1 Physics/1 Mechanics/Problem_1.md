@@ -19,21 +19,23 @@ We begin by considering a projectile launched with an initial velocity $v_0$ at 
 
 ###  1. **Equations of Motion**
 
-**Horizontal motion** (constant velocity):
-- Acceleration: $a_x = 0$
-- Velocity: $v_x = v_0\cos(\theta)$
-- Displacement:  
-  $$
-  x(t) = v_0\cos(\theta) \cdot t
-  $$
+- Horizontal motion (constant velocity):
 
-**Vertical motion** (accelerated motion):
-- Acceleration: $a_y = -g$
-- Velocity: $v_y = v_0\sin(\theta) - gt$
-- Displacement:  
-  $$
-  y(t) = v_0\sin(\theta) \cdot t - \frac{1}{2}gt^2
-  $$
+- Acceleration: $a_x=0$
+
+- Velocity: $v_x=v_0\cos(\theta)$
+
+- Displacement:
+$$x(t)=v_0\cos(\theta)\cdot t$$
+
+Vertical motion (accelerated motion):
+
+- Acceleration: $a_y=-g$
+
+- Velocity: $v_y=v_0\sin(\theta)-gt$
+
+- Displacement:
+$$y(t)=v_0\sin(\theta)\cdot t-\frac{1}{2}gt^2$$
 
 ---
 
