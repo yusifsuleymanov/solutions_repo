@@ -111,12 +111,13 @@ Where:
 - $g$ is the acceleration due to gravity
 
 ###  Key Observations:
-- Range depends **non-linearly** on $\theta$ through $\sin(2\theta)$.
-- The function $\sin(2\theta)$ reaches its **maximum value of 1** when $2\theta=90^\circ$.
-  - Therefore, the **maximum range occurs at**:  
-    $$
-    \boxed{\theta=45^\circ}
-    $$
+- Range depends non-linearly on $θ$ through $sin(2θ)$.
+
+- The function $sin(2θ)$ reaches its maximum value of 1 when $2θ=90°$.
+
+- Therefore, the maximum range occurs at:
+$$\boxed{θ=45°}$$
+
 
 ---
 
