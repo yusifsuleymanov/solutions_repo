@@ -254,15 +254,11 @@ Where:
 
 This leads to **nonlinear differential equations**:
 
-- In horizontal direction:
-  $$
-  m\frac{dv_x}{dt}=-kv_x
-  $$
+- In horizontal direction:  
+  $$m\frac{dv_x}{dt}=-kv_x$$
 
-- In vertical direction:
-  $$
-  m\frac{dv_y}{dt}=-mg-kv_y
-  $$
+- In vertical direction:  
+  $$m\frac{dv_y}{dt}=-mg-kv_y$$
 
 These must be solved **numerically** using techniques like Euler’s method or Runge-Kutta.
 
