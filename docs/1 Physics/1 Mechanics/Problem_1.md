@@ -408,3 +408,64 @@ initial_height = 0                          # m (ground level launch)
 
 plot_range_vs_angle(initial_velocities, gravity, initial_height)
 ```
+![alt text](image-10.png)
+---
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Function to simulate projectile motion
+def projectile_motion(v0, angle_deg, g=9.81, h0=0):
+    angle_rad = np.radians(angle_deg)
+    v0x = v0 * np.cos(angle_rad)
+    v0y = v0 * np.sin(angle_rad)
+
+    # Time of flight
+    if h0 == 0:
+        t_flight = 2 * v0y / g
+    else:
+        t_flight = (v0y + np.sqrt(v0y**2 + 2 * g * h0)) / g
+
+    t = np.linspace(0, t_flight, num=300)
+    x = v0x * t
+    y = h0 + v0y * t - 0.5 * g * t**2
+    return x, y
+
+# Plot setup
+g = 9.81
+h0 = 0
+
+fig, axs = plt.subplots(2, 1, figsize=(10, 12))
+
+# (a) Fixed angle, changing speeds
+velocities = [30, 40, 50]
+angle_fixed = 45
+colors = ['r', 'purple', 'green']
+for v0, color in zip(velocities, colors):
+    x, y = projectile_motion(v0, angle_fixed, g, h0)
+    axs[0].plot(x, y, color=color, label=f'v₀ = {v0} m/s')
+
+axs[0].set_title('(a) Constant Angle (45°), Varying Speeds')
+axs[0].set_xlabel('x (meters)')
+axs[0].set_ylabel('y (meters)')
+axs[0].legend()
+axs[0].grid(True)
+axs[0].axis('equal')
+
+# (b) Fixed speed, changing angles
+v0_fixed = 50
+angles = [15, 45, 75]
+for angle, color in zip(angles, colors):
+    x, y = projectile_motion(v0_fixed, angle, g, h0)
+    axs[1].plot(x, y, color=color, label=f'θ = {angle}°')
+
+axs[1].set_title('(b) Constant Speed (50 m/s), Varying Angles')
+axs[1].set_xlabel('x (meters)')
+axs[1].set_ylabel('y (meters)')
+axs[1].legend()
+axs[1].grid(True)
+axs[1].axis('equal')
+
+plt.tight_layout()
+plt.show()
+```
