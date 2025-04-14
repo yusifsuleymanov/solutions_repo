@@ -536,44 +536,48 @@ initial_height = 0         # m
 plot_range_vs_angle(initial_velocity, gravity, initial_height)
 </code></pre>
 <h2 id="_2"><img alt="alt text" src="../image-9.png"/></h2>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="-function-to-calculate-range-">--- Function to calculate range ---</h1>
-<p>def calculate_range(v0, angle_deg, g=9.81, h0=0):
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# --- Function to calculate range ---
+def calculate_range(v0, angle_deg, g=9.81, h0=0):
     angle_rad = np.radians(angle_deg)
     v0x = v0 * np.cos(angle_rad)
-    v0y = v0 * np.sin(angle_rad)</p>
-<pre><code>if h0 == 0:
-    # Flat terrain (simplified range formula)
-    R = (v0**2 * np.sin(2 * angle_rad)) / g
-else:
-    # Non-zero launch height, solve for time of flight and range
-    t_flight = (v0y + np.sqrt(v0y**2 + 2 * g * h0)) / g
-    R = v0x * t_flight
-return R
-</code></pre>
-<h1 id="-function-to-simulate-and-plot-">--- Function to simulate and plot ---</h1>
-<p>def plot_range_vs_angle(v0_values, g=9.81, h0=0):
-    angles = np.linspace(0, 90, 500)
-    plt.figure(figsize=(12, 7))</p>
-<pre><code>for v0 in v0_values:
-    ranges = [calculate_range(v0, angle, g, h0) for angle in angles]
-    plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')
+    v0y = v0 * np.sin(angle_rad)
 
-plt.xlabel('Angle of Projection (degrees)')
-plt.ylabel('Range (meters)')
-plt.title('Range vs. Angle of Projection')
-plt.grid(True)
-plt.legend()
-plt.tight_layout()
-plt.show()
-</code></pre>
-<h1 id="-example-usage-">--- Example usage ---</h1>
-<p>initial_velocities = [10, 20, 30, 40, 50]  # m/s
+    if h0 == 0:
+        # Flat terrain (simplified range formula)
+        R = (v0**2 * np.sin(2 * angle_rad)) / g
+    else:
+        # Non-zero launch height, solve for time of flight and range
+        t_flight = (v0y + np.sqrt(v0y**2 + 2 * g * h0)) / g
+        R = v0x * t_flight
+    return R
+
+# --- Function to simulate and plot ---
+def plot_range_vs_angle(v0_values, g=9.81, h0=0):
+    angles = np.linspace(0, 90, 500)
+    plt.figure(figsize=(12, 7))
+
+    for v0 in v0_values:
+        ranges = [calculate_range(v0, angle, g, h0) for angle in angles]
+        plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')
+
+    plt.xlabel('Angle of Projection (degrees)')
+    plt.ylabel('Range (meters)')
+    plt.title('Range vs. Angle of Projection')
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+# --- Example usage ---
+initial_velocities = [10, 20, 30, 40, 50]  # m/s
 gravity = 9.81                              # m/s² (Earth)
-initial_height = 0                          # m (ground level launch)</p>
-<p>plot_range_vs_angle(initial_velocities, gravity, initial_height)</p>
+initial_height = 0                          # m (ground level launch)
+
+plot_range_vs_angle(initial_velocities, gravity, initial_height)
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
