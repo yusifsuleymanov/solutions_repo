@@ -407,3 +407,4 @@ gravity = 9.81                              # m/s² (Earth)
 initial_height = 0                          # m (ground level launch)
 
 plot_range_vs_angle(initial_velocities, gravity, initial_height)
+```
