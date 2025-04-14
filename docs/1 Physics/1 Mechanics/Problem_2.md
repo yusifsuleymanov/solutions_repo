@@ -180,18 +180,19 @@ $$\omega_{\text{res}} = \sqrt{\omega_0^2 - \frac{b^2}{2}}$$
 
 ### 🔄 Transition Between Regular and Chaotic Motion
 
-As we vary the damping coefficient $ b $, driving amplitude $ A $, and driving frequency $ \omega $, the system can exhibit different types of motion:
+As we vary the damping coefficient $b$, driving amplitude $A$, and driving frequency $\omega$, the system can exhibit different types of motion:
 
-- **Regular Motion**: For certain values of $ A $ and $ \omega $, the pendulum exhibits periodic, stable oscillations. This occurs especially at resonance, where the system synchronizes with the external force.  
+- **Regular Motion**: For certain values of $A$ and $\omega$, the pendulum exhibits periodic, stable oscillations. This occurs especially at resonance, where the system synchronizes with the external force.  
 
-  - **Stable periodic motion** can be described by a sinusoidal function:
-    $$ \theta(t) = B\cos(\omega t - \delta) $$
+  - **Stable periodic motion** can be described by a sinusoidal function:  
+    $$\theta(t)=B\cos(\omega t-\delta)$$
 
-- **Chaotic Motion**: As $ A $ increases or $ \omega $ deviates from resonance, the system can enter a **chaotic regime**, where the motion becomes irregular and sensitive to initial conditions.
+- **Chaotic Motion**: As $A$ increases or $\omega$ deviates from resonance, the system can enter a **chaotic regime**, where the motion becomes irregular and sensitive to initial conditions.
 
-    - **Chaotic systems** exhibit sensitive dependence on initial conditions, meaning that even tiny differences in initial angles or velocities can lead to vastly different behaviors over time.
+  - **Chaotic systems** exhibit sensitive dependence on initial conditions, meaning that even tiny differences in initial angles or velocities can lead to vastly different behaviors over time.
 
-    - **Lyapunov exponents** measure the rate of divergence of nearby trajectories in phase space. Positive Lyapunov exponents are often used to identify chaos.
+  - **Lyapunov exponents** measure the rate of divergence of nearby trajectories in phase space. Positive Lyapunov exponents are often used to identify chaos.
+
 
 ---
 
