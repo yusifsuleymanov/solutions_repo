@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>📘 Forced Damped Pendulum Analysis - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "\ud83d\udcd8 Forced Damped Pendulum Analysis";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,7 +48,29 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">📘 Forced Damped Pendulum Analysis</a>
+<ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. 🎯 Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#governing-equation">Governing Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#resonance-condition">Resonance Condition</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. 📊 Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#regular-vs-chaotic-motion">Regular vs Chaotic Motion</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. 🌍 Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation-in-python">4. 💻 Implementation in Python</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -161,7 +183,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">📘 Forced Damped Pendulum Analysis</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -169,7 +191,70 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>bhbhbbhv# Problem 2</p>
+<h1 id="forced-damped-pendulum-analysis">📘 Forced Damped Pendulum Analysis</h1>
+<h2 id="1-theoretical-foundation">1. 🎯 Theoretical Foundation</h2>
+<h3 id="governing-equation">Governing Equation</h3>
+<p>The general form of the differential equation for a <strong>forced damped pendulum</strong> is:</p>
+<div class="arithmatex">\[\frac{d^2\theta}{dt^2}+\gamma\frac{d\theta}{dt}+\omega_0^2\sin(\theta)=A\cos(\omega t)\]</div>
+<p>Where:
+- <span class="arithmatex">\(\theta(t)\)</span>: Angular displacement<br/>
+- <span class="arithmatex">\(\gamma\)</span>: Damping coefficient<br/>
+- <span class="arithmatex">\(\omega_0\)</span>: Natural frequency<br/>
+- <span class="arithmatex">\(A\)</span>: Driving amplitude<br/>
+- <span class="arithmatex">\(\omega\)</span>: Driving frequency  </p>
+<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
+<p>For small <span class="arithmatex">\(\theta\)</span>, we use the approximation:</p>
+<div class="arithmatex">\[\sin(\theta)\approx\theta\]</div>
+<p>The equation becomes linear:</p>
+<div class="arithmatex">\[\frac{d^2\theta}{dt^2}+\gamma\frac{d\theta}{dt}+\omega_0^2\theta=A\cos(\omega t)\]</div>
+<h3 id="resonance-condition">Resonance Condition</h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> approaches the natural frequency <span class="arithmatex">\(\omega_0\)</span>, leading to maximum amplitude in steady-state oscillations.</p>
+<hr/>
+<h2 id="2-analysis-of-dynamics">2. 📊 Analysis of Dynamics</h2>
+<p>Study the effects of:
+- Damping (<span class="arithmatex">\(\gamma\)</span>)
+- Driving amplitude (<span class="arithmatex">\(A\)</span>)
+- Driving frequency (<span class="arithmatex">\(\omega\)</span>)</p>
+<h3 id="regular-vs-chaotic-motion">Regular vs Chaotic Motion</h3>
+<ul>
+<li>Regular: predictable, periodic response</li>
+<li>Chaotic: sensitive to initial conditions, non-repeating patterns</li>
+</ul>
+<hr/>
+<h2 id="3-practical-applications">3. 🌍 Practical Applications</h2>
+<p>Real-world systems modeled by the forced damped pendulum:
+- ⚙️ Energy harvesting devices
+- 🌉 Suspension bridges under wind loads
+- 🔌 RLC electrical circuits with alternating current</p>
+<hr/>
+<h2 id="4-implementation-in-python">4. 💻 Implementation in Python</h2>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp</p>
+<h1 id="parameters">Parameters</h1>
+<p>gamma = 0.2
+omega0 = 1.5
+A = 1.2
+omega = 0.7</p>
+<p>def forced_damped_pendulum(t, y):
+    theta, dtheta = y
+    d2theta = -gamma * dtheta - omega0**2 * np.sin(theta) + A * np.cos(omega * t)
+    return [dtheta, d2theta]</p>
+<h1 id="initial-conditions">Initial conditions</h1>
+<p>y0 = [0.2, 0.0]
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 2000)</p>
+<p>sol = solve_ivp(forced_damped_pendulum, t_span, y0, t_eval=t_eval)</p>
+<h1 id="plotting">Plotting</h1>
+<p>plt.figure(figsize=(10, 5))
+plt.plot(sol.t, sol.y[0])
+plt.title("Forced Damped Pendulum: Angular Displacement vs Time")
+plt.xlabel("Time (s)")
+plt.ylabel("Angle (rad)")
+plt.grid(True)
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
