@@ -363,3 +363,46 @@ initial_height = 0         # m
 
 plot_range_vs_angle(initial_velocity, gravity, initial_height)
 ```
+![alt text](image-9.png)
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- Function to calculate range ---
+def calculate_range(v0, angle_deg, g=9.81, h0=0):
+    angle_rad = np.radians(angle_deg)
+    v0x = v0 * np.cos(angle_rad)
+    v0y = v0 * np.sin(angle_rad)
+
+    if h0 == 0:
+        # Flat terrain (simplified range formula)
+        R = (v0**2 * np.sin(2 * angle_rad)) / g
+    else:
+        # Non-zero launch height, solve for time of flight and range
+        t_flight = (v0y + np.sqrt(v0y**2 + 2 * g * h0)) / g
+        R = v0x * t_flight
+    return R
+
+# --- Function to simulate and plot ---
+def plot_range_vs_angle(v0_values, g=9.81, h0=0):
+    angles = np.linspace(0, 90, 500)
+    plt.figure(figsize=(12, 7))
+    
+    for v0 in v0_values:
+        ranges = [calculate_range(v0, angle, g, h0) for angle in angles]
+        plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')
+    
+    plt.xlabel('Angle of Projection (degrees)')
+    plt.ylabel('Range (meters)')
+    plt.title('Range vs. Angle of Projection')
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+# --- Example usage ---
+initial_velocities = [10, 20, 30, 40, 50]  # m/s
+gravity = 9.81  # m/s² (Earth)
+initial_height = 0  # m (ground level launch)
+
+plot_range_vs_angle(initial_velocities, gravity, initial_height)
