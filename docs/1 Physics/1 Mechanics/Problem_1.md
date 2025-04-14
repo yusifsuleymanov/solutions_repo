@@ -364,6 +364,7 @@ initial_height = 0         # m
 plot_range_vs_angle(initial_velocity, gravity, initial_height)
 ```
 ![alt text](image-9.png)
+---
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
