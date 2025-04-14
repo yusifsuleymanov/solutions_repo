@@ -43,9 +43,9 @@ $$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omeg
 The general solution to the linearized ODE consists of two parts:
 
 1. **Homogeneous solution** (related to natural damping):  
-$$ \theta_h(t) = C_1e^{r_1t} + C_2e^{r_2t} $$  
-where $r_1, r_2$ are roots of the characteristic equation:  
-$$ r^2 + br + \frac{g}{L} = 0 $$
+$$\theta_h(t)=C_1e^{r_1t}+C_2e^{r_2t}$$  
+where $r_1,r_2$ are roots of the characteristic equation:  
+$$r^2+br+\frac{g}{L}=0$$
 
 2. **Particular solution** (related to the external forcing):  
 We assume a steady-state solution of the form:  
@@ -58,6 +58,7 @@ The amplitude of the forced oscillation is denoted by $B$, and the phase lag due
 The amplitude of the steady-state response is given by:  
 
 $$B=\frac{A}{\sqrt{\left(\frac{g}{L}-\omega^2\right)^2+(b\omega)^2}}$$
+
 
 ---
 
