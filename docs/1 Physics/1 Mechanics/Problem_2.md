@@ -330,9 +330,86 @@ At resonance, the current in the circuit can become very large, leading to poten
 
 In all these systems, the principles of forced oscillations, damping, and resonance play critical roles in ensuring proper functionality and avoiding failure.
 
-![alt text](image-8.png)
+![alt text](image-11.png)
 
-![alt text](image-6.png)
+![alt text](image-12.png)
 
-![alt text](image-7.png)
+![alt text](image-13.png)
+---
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Common parameters
+g = 9.81      # gravitational acceleration (m/s²)
+L = 1.0       # pendulum length (m)
+theta0 = 0.2  # small initial angle (radians)
+omega0 = 0.0  # initial angular velocity (rad/s)
+y0 = [theta0, omega0]
+t_span = (0, 20)
+t_eval = np.linspace(t_span[0], t_span[1], 1000)
+
+# 1) Simple Pendulum (b = 0, A = 0)
+def simple_pendulum(t, y):
+    theta, omega = y
+    dydt = [omega, -(g / L) * np.sin(theta)]
+    return dydt
+
+sol_simple = solve_ivp(simple_pendulum, t_span, y0, t_eval=t_eval)
+
+# 2) Damped Pendulum (b != 0, A = 0)
+b = 0.2  # damping coefficient
+
+def damped_pendulum(t, y):
+    theta, omega = y
+    dydt = [omega, -b * omega - (g / L) * np.sin(theta)]
+    return dydt
+
+sol_damped = solve_ivp(damped_pendulum, t_span, y0, t_eval=t_eval)
+
+# 3) Forced Pendulum (b = 0, A != 0)
+A = 0.5       # driving force amplitude
+omega_drive = 2/3  # driving frequency
+
+def forced_pendulum(t, y):
+    theta, omega = y
+    dydt = [omega, -(g / L) * np.sin(theta) + A * np.cos(omega_drive * t)]
+    return dydt
+
+sol_forced = solve_ivp(forced_pendulum, t_span, y0, t_eval=t_eval)
+
+# Function to plot one pendulum case (time series + phase portrait)
+def plot_case(sol, case_title, color):
+    theta = sol.y[0]
+    omega = sol.y[1]
+    t = sol.t
+    
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    
+    # Time series
+    ax1.plot(t, theta, color=color, linewidth=1)
+    ax1.set_xlabel('Time (s)')
+    ax1.set_ylabel('Theta (rad)')
+    ax1.set_title('Time Series')
+    ax1.grid(True)
+    
+    # Phase portrait
+    ax2.plot(theta, omega, color=color, linewidth=1)
+    ax2.set_xlabel('Theta (rad)')
+    ax2.set_ylabel('Omega (rad/s)')
+    ax2.set_title('Phase Portrait')
+    ax2.grid(True)
+    
+    # Main title
+    fig.suptitle(case_title, fontsize=16, color=color)
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.8)  # Adjust to fit main title
+    plt.show()
+
+# --- Now plot each system separately ---
+plot_case(sol_simple, "1) Simple Pendulum", 'red')
+plot_case(sol_damped, "2) Damped Pendulum", 'blue')
+plot_case(sol_forced, "3) Forced Pendulum", 'teal')
+```
 
