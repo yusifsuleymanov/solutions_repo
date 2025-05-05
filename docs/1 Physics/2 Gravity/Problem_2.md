@@ -14,14 +14,16 @@ To derive and understand the three critical velocities in orbital mechanics — 
 
 - **Derivation**:
 
-  The gravitational force provides the required centripetal force:
-  $$
-  \frac{G M m}{R^2} = \frac{m v_1^2}{R}
-  $$
-  Simplifying:
-  $$
-  v_1 = \sqrt{\frac{G M}{R}}
-  $$
+ The gravitational force provides the required centripetal force:
+$$
+\frac{G M m}{R^2} = \frac{m v_1^2}{R}
+$$
+
+Simplifying:
+$$
+v_1 = \sqrt{\frac{G M}{R}}
+$$
+
 
 ---
 
