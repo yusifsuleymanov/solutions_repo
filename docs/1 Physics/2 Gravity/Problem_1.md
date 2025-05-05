@@ -1,6 +1,5 @@
 # Gravity
 ![alt text](sun-1.gif)
----
 ## Problem 1: Orbital Period and Orbital Radius
 
 ### Motivation
@@ -67,6 +66,39 @@ Finally:
 $$T^2 = \frac{4\pi^2}{GM} r^3$$
 
 ---
+Sure! Here's a short academic-style note summarizing what was done:
+
+---
+
+## 📘 Summary Note: Estimating Mass of Earth and Sun Using Kepler’s Third Law
+
+This document provides a **manual derivation and computation** of the **mass of the Earth and the Sun** using **Kepler's Third Law**:
+
+* We used the formula:
+
+  $$
+  M = \frac{4\pi^2 r^3}{G T^2}
+  $$
+
+  which relates a satellite’s orbital period (\$T\$) and radius (\$r\$) to the central body's mass (\$M\$).
+
+* For the **Earth**, we used:
+
+  * Orbital altitude of 400 km,
+  * Period \$T = 5400\$ s,
+  * Earth radius \$R = 6.371 \times 10^6\$ m,
+  * Result:
+    $M_{Earth} \approx 6.32 \times 10^{24}\ \text{kg}$
+
+* For the **Sun**, we used:
+
+  * Earth-Sun distance: \$1.496 \times 10^{11}\$ m,
+  * Period \$T = 1\$ year,
+  * Result:
+    $M_{Sun} \approx 1.99 \times 10^{30}\ \text{kg}$
+
+
+
 
 ## Implications
 
