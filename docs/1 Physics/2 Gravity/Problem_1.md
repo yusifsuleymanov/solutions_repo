@@ -1,5 +1,6 @@
 # Gravity
-
+![alt text](sun-1.gif)
+---
 ## Problem 1: Orbital Period and Orbital Radius
 
 ### Motivation
@@ -90,73 +91,51 @@ $$T = 2\pi \sqrt{\frac{r^3}{GM}}$$
 
 ## Python Simulation
 
-![alt text](image.png)
+![alt text](image-6.png)
 ---
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# Constants
-G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
-pi = np.pi
-
-# Planetary data for verification (orbital radius in meters, period in seconds)
-planet_data = {
-    "Mercury": {"r": 5.79e10, "T": 7.60e6},
-    "Venus":   {"r": 1.082e11, "T": 1.94e7},
-    "Earth":   {"r": 1.496e11, "T": 3.156e7},
-    "Mars":    {"r": 2.279e11, "T": 5.93e7},
+planets = {
+    'Mercury': {'r': 57.9e6, 'T': 0.241},
+    'Venus': {'r': 108.2e6, 'T': 0.615},
+    'Earth': {'r': 149.6e6, 'T': 1.000},
+    'Mars': {'r': 227.9e6, 'T': 1.881}
 }
 
-# Arrays for simulation
-radii = np.linspace(1e7, 5e8, 200)  # Orbital radii in meters
-M_earth = 5.97e24  # Mass of Earth in kg
+data = {
+    'Planet': [],
+    'r (10^6 km)': [],
+    'T (years)': [],
+    'r³ (10^18 km³)': [],
+    'T² (years²)': []
+}
 
-# Kepler's Third Law simulation for Earth orbit
-def orbital_period(r, M):
-    return 2 * pi * np.sqrt(r**3 / (G * M))
+for name, values in planets.items():
+    r = values['r']
+    T = values['T']
+    data['Planet'].append(name)
+    data['r (10^6 km)'].append(r)
+    data['T (years)'].append(T)
+    data['r³ (10^18 km³)'].append((r**3) / 1e18)
+    data['T² (years²)'].append(T**2)
 
-# Calculate T^2 and r^3
-T_sim = orbital_period(radii, M_earth)
-T_squared_sim = T_sim**2
-r_cubed_sim = radii**3
+df = pd.DataFrame(data)
 
-# Extract T^2 and r^3 from real planetary data
-T_squared_planets = []
-r_cubed_planets = []
-labels = []
+print(df)
 
-for planet, data in planet_data.items():
-    T_squared_planets.append(data["T"]**2)
-    r_cubed_planets.append(data["r"]**3)
-    labels.append(planet)
+plt.plot(df['r³ (10^18 km³)'], df['T² (years²)'], 'ro-', markersize=8)
+for i, txt in enumerate(df['Planet']):
+    plt.annotate(txt, (df['r³ (10^18 km³)'][i], df['T² (years²)'][i]), textcoords="offset points", xytext=(5,5), ha='center')
 
-# Estimate Mass of Sun using Kepler's Law (Earth data)
-T_earth = planet_data["Earth"]["T"]
-r_earth = planet_data["Earth"]["r"]
-M_sun = 4 * pi**2 * r_earth**3 / (G * T_earth**2)
-
-T_squared_planets = np.array(T_squared_planets)
-r_cubed_planets = np.array(r_cubed_planets)
-
-# Plotting
-plt.figure(figsize=(10, 6))
-plt.plot(r_cubed_sim, T_squared_sim, label="Simulated (Earth)", color="blue")
-plt.scatter(r_cubed_planets, T_squared_planets, color="red", zorder=5)
-
-# Annotate planet names
-for i, planet in enumerate(labels):
-    plt.annotate(planet, (r_cubed_planets[i], T_squared_planets[i]), textcoords="offset points", xytext=(5,5))
-
-plt.title("Verification of Kepler's Third Law ($T^2$ vs $r^3$)")
-plt.xlabel("Orbital Radius Cubed $r^3$ (m$^3$)")
-plt.ylabel("Orbital Period Squared $T^2$ (s$^2$)")
+plt.xlabel(r'$r^3$ (in $10^{18}\ km^3$)')
+plt.ylabel(r'$T^2$ (in $years^2$)')
+plt.title('Verification of Kepler\'s Third Law with Solar System Planets')
 plt.grid(True)
-plt.legend()
-plt.tight_layout()
 plt.show()
 
-M_sun, M_earth  # Output estimated mass of Sun and used Earth mass for verific
 ```
 ![alt text](image-4.png)
 ---
@@ -204,7 +183,7 @@ ani = FuncAnimation(fig, update, frames=len(t), interval=30, blit=True)
 
 plt.show()
 ```
-![alt text](image-5.png)
+
 
 
 
