@@ -66,19 +66,20 @@ Using:
 - $R_{earth} = 6.371 \times 10^6 \ \text{m}$
 
 - **First cosmic velocity**:
-  $$
-  v_1 = \sqrt{\frac{G M}{R}} \approx 7.91 \ \text{km/s}
-  $$
+$$
+v_1 = \sqrt{\frac{G M}{R}} \approx 7.91 \ \text{km/s}
+$$
 
 - **Second cosmic velocity**:
-  $$
-  v_2 = \sqrt{2} \cdot v_1 \approx 11.2 \ \text{km/s}
-  $$
+$$
+v_2 = \sqrt{2} \cdot v_1 \approx 11.2 \ \text{km/s}
+$$
 
 - **Third cosmic velocity** (escape from Sun at Earth’s orbit):
-  $$
-  v_3 = \sqrt{\frac{2 G M_{sun}}{r_{earth\_orbit}}} \approx 42.1 \ \text{km/s}
-  $$
+$$
+v_3 = \sqrt{\frac{2 G M_{sun}}{r_{earth\_orbit}}} \approx 42.1 \ \text{km/s}
+$$
+
 
 ---
 
