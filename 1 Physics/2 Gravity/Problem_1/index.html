@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Gravity - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Gravity";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -54,8 +54,28 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">2 Gravity</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Gravity</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-1-orbital-period-and-orbital-radius">Problem 1: Orbital Period and Orbital Radius</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#task">Task</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implications">Implications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#real-world-example-the-moon">Real-World Example: The Moon</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-simulation">Python Simulation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_2"></a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -163,7 +183,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Gravity</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +191,179 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="gravity">Gravity</h1>
+<h2 id="problem-1-orbital-period-and-orbital-radius">Problem 1: Orbital Period and Orbital Radius</h2>
+<h3 id="motivation">Motivation</h3>
+<p>The relationship between the square of the orbital period and the cube of the orbital radius, known as <strong>Kepler's Third Law</strong>, is a cornerstone of celestial mechanics.</p>
+<ul>
+<li>It connects <strong>orbital dynamics</strong> to <strong>gravitational forces</strong></li>
+<li>Crucial for:</li>
+<li>Determining planetary motion</li>
+<li>Designing satellite trajectories</li>
+<li>Estimating masses of celestial objects</li>
+</ul>
+<hr/>
+<h3 id="task">Task</h3>
+<ul>
+<li>Derive the relationship between:</li>
+<li>Orbital period <span class="arithmatex">\(T\)</span></li>
+<li>Orbital radius <span class="arithmatex">\(r\)</span></li>
+<li>Use Newton's Law of Gravitation and centripetal force</li>
+<li>Apply the law to real-world cases like:</li>
+<li>Moon's orbit around Earth</li>
+<li>Planets in the Solar System</li>
+<li>Simulate circular orbits to verify the relation</li>
+</ul>
+<hr/>
+<h2 id="derivation">Derivation</h2>
+<p><strong>Step 1: Newton's Law of Universal Gravitation</strong></p>
+<div class="arithmatex">\[F_g = \frac{GMm}{r^2}\]</div>
+<p><strong>Step 2: Centripetal Force Required for Circular Motion</strong></p>
+<div class="arithmatex">\[F_c = \frac{mv^2}{r}\]</div>
+<p><strong>Equating gravitational force and centripetal force</strong>:</p>
+<div class="arithmatex">\[\frac{GMm}{r^2} = \frac{mv^2}{r}\]</div>
+<p>Cancel <span class="arithmatex">\(m\)</span> and rearrange:</p>
+<div class="arithmatex">\[v^2 = \frac{GM}{r}\]</div>
+<p><strong>Step 3: Express velocity in terms of period <span class="arithmatex">\(T\)</span></strong></p>
+<p>Orbital speed <span class="arithmatex">\(v = \frac{2\pi r}{T}\)</span></p>
+<p>Substitute into the equation:</p>
+<div class="arithmatex">\[\left(\frac{2\pi r}{T}\right)^2 = \frac{GM}{r}\]</div>
+<p>Expand and simplify:</p>
+<div class="arithmatex">\[\frac{4\pi^2 r^2}{T^2} = \frac{GM}{r}\]</div>
+<p>Multiply both sides by <span class="arithmatex">\(T^2 r\)</span>:</p>
+<div class="arithmatex">\[4\pi^2 r^3 = GMT^2\]</div>
+<p>Finally:</p>
+<div class="arithmatex">\[T^2 = \frac{4\pi^2}{GM} r^3\]</div>
+<hr/>
+<h2 id="implications">Implications</h2>
+<ul>
+<li><strong>Kepler's Third Law</strong>: <span class="arithmatex">\(T^2 \propto r^3\)</span></li>
+<li>This relation:</li>
+<li>Helps determine the <strong>mass of the central object</strong></li>
+<li>Predicts motion of satellites and moons</li>
+<li>Useful for <strong>astro-navigation</strong> and <strong>space missions</strong></li>
+</ul>
+<hr/>
+<h2 id="real-world-example-the-moon">Real-World Example: The Moon</h2>
+<ul>
+<li>Mass of Earth: <span class="arithmatex">\(M = 5.97 \times 10^{24}\)</span> kg  </li>
+<li>Radius of Moon's orbit: <span class="arithmatex">\(r = 3.84 \times 10^8\)</span> m</li>
+</ul>
+<p>Using:</p>
+<div class="arithmatex">\[T = 2\pi \sqrt{\frac{r^3}{GM}}\]</div>
+<hr/>
+<h2 id="python-simulation">Python Simulation</h2>
+<h2 id="_1"><img alt="alt text" src="../image.png"/></h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+pi = np.pi
+
+# Planetary data for verification (orbital radius in meters, period in seconds)
+planet_data = {
+    "Mercury": {"r": 5.79e10, "T": 7.60e6},
+    "Venus":   {"r": 1.082e11, "T": 1.94e7},
+    "Earth":   {"r": 1.496e11, "T": 3.156e7},
+    "Mars":    {"r": 2.279e11, "T": 5.93e7},
+}
+
+# Arrays for simulation
+radii = np.linspace(1e7, 5e8, 200)  # Orbital radii in meters
+M_earth = 5.97e24  # Mass of Earth in kg
+
+# Kepler's Third Law simulation for Earth orbit
+def orbital_period(r, M):
+    return 2 * pi * np.sqrt(r**3 / (G * M))
+
+# Calculate T^2 and r^3
+T_sim = orbital_period(radii, M_earth)
+T_squared_sim = T_sim**2
+r_cubed_sim = radii**3
+
+# Extract T^2 and r^3 from real planetary data
+T_squared_planets = []
+r_cubed_planets = []
+labels = []
+
+for planet, data in planet_data.items():
+    T_squared_planets.append(data["T"]**2)
+    r_cubed_planets.append(data["r"]**3)
+    labels.append(planet)
+
+# Estimate Mass of Sun using Kepler's Law (Earth data)
+T_earth = planet_data["Earth"]["T"]
+r_earth = planet_data["Earth"]["r"]
+M_sun = 4 * pi**2 * r_earth**3 / (G * T_earth**2)
+
+T_squared_planets = np.array(T_squared_planets)
+r_cubed_planets = np.array(r_cubed_planets)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(r_cubed_sim, T_squared_sim, label="Simulated (Earth)", color="blue")
+plt.scatter(r_cubed_planets, T_squared_planets, color="red", zorder=5)
+
+# Annotate planet names
+for i, planet in enumerate(labels):
+    plt.annotate(planet, (r_cubed_planets[i], T_squared_planets[i]), textcoords="offset points", xytext=(5,5))
+
+plt.title("Verification of Kepler's Third Law ($T^2$ vs $r^3$)")
+plt.xlabel("Orbital Radius Cubed $r^3$ (m$^3$)")
+plt.ylabel("Orbital Period Squared $T^2$ (s$^2$)")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+M_sun, M_earth  # Output estimated mass of Sun and used Earth mass for verific
+</code></pre>
+<h2 id="_2"><img alt="alt text" src="../image-4.png"/></h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Orbital parameters (in astronomical units and years)
+radius = 1           # Orbital radius in AU
+period = 1           # Orbital period in years
+omega = 2 * np.pi / period  # Angular velocity (rad/year)
+
+# Time array (convert years to days)
+t = np.linspace(0, period, 360)
+x = radius * np.cos(omega * t * 365)  # X-position over time
+y = radius * np.sin(omega * t * 365)  # Y-position over time
+
+# Set up the figure and axis
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_aspect('equal')
+ax.set_xlim(-1.5, 1.5)
+ax.set_ylim(-1.5, 1.5)
+ax.set_title("Circular Planet Orbit (Kepler's 3rd Law)")
+ax.set_xlabel("X (AU)")
+ax.set_ylabel("Y (AU)")
+
+# Draw the Sun and initialize the planet
+sun = plt.Circle((0, 0), 0.05, color='gold', label='Sun')
+planet, = plt.plot([], [], 'o', color='blue', label='Planet')
+orbit, = plt.plot(x, y, linestyle='dotted', color='gray', alpha=0.5)
+
+# Add the Sun to the plot
+ax.add_artist(sun)
+ax.legend(loc="upper right")
+
+# Animation update function
+def update(frame):
+    # Modified to provide sequences to set_data
+    planet.set_data([x[frame]], [y[frame]])  
+    return planet,
+
+# Create animation
+ani = FuncAnimation(fig, update, frames=len(t), interval=30, blit=True)
+
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-5.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
