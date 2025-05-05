@@ -138,68 +138,59 @@ plt.legend()
 plt.axis('equal')
 plt.show()
 ```
-![alt text](image-13.png)
+![alt text](image-14.png)
 ---
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Constants
-G = 6.67430e-11  # gravitational constant, m^3/kg/s^2
-M_earth = 5.972e24  # mass of Earth, kg
-R_earth = 6.371e6  # radius of Earth, m
+G = 6.67430e-11  # gravitational constant
+M = 5.972e24     # mass of Earth
+R = 6.371e6      # radius of Earth in meters
+altitude = 800e3 # 800 km above the surface
+initial_distance = R + altitude
+time_step = 1    # seconds
+total_time = 7000  # simulate up to 7000 seconds
+n_steps = int(total_time / time_step)
 
-# Simulation parameters
-initial_altitude = 800e3  # 800 km above Earth's surface
-initial_position = np.array([R_earth + initial_altitude, 0])  # on the x-axis
-initial_speeds = np.arange(5e3, 13.5e3, 0.5e3)  # speeds from 5 km/s to 13 km/s
-dt = 1  # time step in seconds
-simulation_time = 8000  # total simulation time in seconds
-steps = int(simulation_time / dt)
+# Initial velocities in m/s
+velocities = np.arange(5000, 13500, 500)  # from 5 km/s to 13 km/s
 
-# Create figure
+# Create Earth plot
 plt.figure(figsize=(10, 10))
+theta = np.linspace(0, 2*np.pi, 300)
+earth_x = R * np.cos(theta)
+earth_y = R * np.sin(theta)
+plt.fill(earth_x, earth_y, 'blue', alpha=0.5, label='Earth')
 
-# Earth
-earth = plt.Circle((0, 0), R_earth, color='blue', label='Earth')
-plt.gca().add_patch(earth)
+# Function to compute gravity acceleration
+def gravity(pos):
+    r = np.linalg.norm(pos)
+    return -G * M * pos / r**3
 
-# Simulation function
-def simulate_trajectory(v0):
-    r = initial_position.copy()
-    v = np.array([0, v0])  # velocity perpendicular to radius (tangential)
+# Simulate each trajectory
+for v in velocities:
+    pos = np.array([initial_distance, 0.0])
+    vel = np.array([0.0, v])
+    traj = []
+    for _ in range(n_steps):
+        acc = gravity(pos)
+        vel += acc * time_step
+        pos += vel * time_step
+        traj.append(pos.copy())
+        if np.linalg.norm(pos) <= R:
+            break
+    traj = np.array(traj)
+    plt.plot(traj[:, 0], traj[:, 1], label=f'{v/1000:.1f} km/s')
 
-    x_vals, y_vals = [], []
-
-    for _ in range(steps):
-        r_mag = np.linalg.norm(r)
-        if r_mag < R_earth:
-            break  # collision with Earth
-
-        a = -G * M_earth * r / r_mag**3
-        v += a * dt
-        r += v * dt
-
-        x_vals.append(r[0])
-        y_vals.append(r[1])
-
-    return np.array(x_vals), np.array(y_vals)
-
-# Simulate and plot trajectories for different velocities
-colors = plt.cm.viridis(np.linspace(0, 1, len(initial_speeds)))
-for i, speed in enumerate(initial_speeds):
-    x_traj, y_traj = simulate_trajectory(speed)
-    plt.plot(x_traj, y_traj, color=colors[i], label=f'{speed/1e3:.1f} km/s')
-
-# Formatting plot
+# Plot settings
+plt.plot(0, 0, 'ko', label='Center of Earth')
+plt.axis('equal')
 plt.xlabel('x (m)')
 plt.ylabel('y (m)')
-plt.title('Payload Trajectories from 800 km Altitude with Different Initial Velocities')
-plt.axis('equal')
-plt.xlim(-2e7, 2e7)
-plt.ylim(-2e7, 2e7)
-plt.grid(True)
+plt.title('Trajectories of Objects from 800 km Altitude with Varying Speeds')
 plt.legend()
-plt.tight_layout()
+plt.grid(True)
 plt.show()
 ```
