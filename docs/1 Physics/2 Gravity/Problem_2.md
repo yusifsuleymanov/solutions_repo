@@ -1,96 +1,158 @@
-# 🌌 Gravity – Problem 2: The Three Cosmic Velocities
+# Gravity Problem 2: Derivation of Three Cosmic Velocities
 
-## 🎯 Objective
+## **1. First Cosmic Velocity ($v_1$)**
 
-To derive and understand the three critical velocities in orbital mechanics — **First Cosmic Velocity (orbital velocity)**, **Second Cosmic Velocity (escape velocity)**, and **Third Cosmic Velocity (solar system escape)** — with calculations and comparisons for Earth, Moon, Mars, and Jupiter.
+The first cosmic velocity is the minimum velocity an object must have to remain in a stable orbit around a planet. The gravitational force provides the required centripetal force for circular motion.
 
----
+The gravitational force is:
 
-## 📘 Key Concepts
+$$
+F_{\text{gravity}} = \frac{G M m}{R^2}
+$$
 
-### 🌍 First Cosmic Velocity ($v_1$) — Orbital Velocity
+The centripetal force is:
 
-- **Definition**: Minimum velocity required to maintain a circular orbit just above the surface of a celestial body.
+$$
+F_{\text{centripetal}} = \frac{m v_1^2}{R}
+$$
 
-- **Derivation**:
+Setting these equal gives:
 
- The gravitational force provides the required centripetal force:
 $$
 \frac{G M m}{R^2} = \frac{m v_1^2}{R}
 $$
 
 Simplifying:
+
 $$
 v_1 = \sqrt{\frac{G M}{R}}
 $$
 
+Thus, the first cosmic velocity is:
 
+$$
+v_1 = \sqrt{\frac{G M}{R}}
+$$
 
+## **2. Second Cosmic Velocity ($v_2$)**
 
+The second cosmic velocity (escape velocity) is the minimum velocity needed to escape the gravitational pull of a planet. The kinetic energy must be equal to the gravitational potential energy to escape.
+
+The gravitational potential energy is:
+
+$$
+U = - \frac{G M m}{R}
+$$
+
+The kinetic energy needed to escape is:
+
+$$
+K = \frac{1}{2} m v_2^2
+$$
+
+Setting the total energy to zero for escape:
+
+$$
+K + U = 0
+$$
+
+This gives:
+
+$$
+\frac{1}{2} m v_2^2 = \frac{G M m}{R}
+$$
+
+Solving for $v_2$:
+
+$$
+v_2 = \sqrt{\frac{2 G M}{R}}
+$$
+
+Thus, the second cosmic velocity is:
+
+$$
+v_2 = \sqrt{\frac{2 G M}{R}}
+$$
+
+## **3. Third Cosmic Velocity ($v_3$)**
+
+The third cosmic velocity is the velocity required for an object to escape the Sun’s gravitational influence, which is the escape velocity from the solar system at Earth's orbit.
+
+The equation for the third cosmic velocity is:
+
+$$
+v_3 = \sqrt{\frac{2 G M_{\text{sun}}}{r_{\text{sun}}}}
+$$
+
+Where:
+- $M_{\text{sun}}$ is the mass of the Sun.
+- $r_{\text{sun}}$ is the distance from Earth to the Sun.
+
+Thus, the third cosmic velocity is:
+
+$$
+v_3 = \sqrt{\frac{2 G M_{\text{sun}}}{r_{\text{sun}}}}
+$$
 
 ---
 
-### 🚀 Second Cosmic Velocity ($v_2$) — Escape Velocity
+## **Values of the Cosmic Velocities for Earth**
 
-- **Definition**: Minimum velocity needed to escape the gravitational field of a body without further propulsion.
+We will now calculate the values of the three cosmic velocities for Earth using the following constants:
 
-- **Derivation**:
+- Gravitational constant, $G = 6.67430 \times 10^{-11} \, \text{m}^3 \, \text{kg}^{-1} \, \text{s}^{-2}$
+- Earth's mass, $M_{\text{Earth}} = 5.97 \times 10^{24} \, \text{kg}$
+- Earth's radius, $R_{\text{Earth}} = 6.371 \times 10^{6} \, \text{m}$
+- Sun's mass, $M_{\text{sun}} = 1.989 \times 10^{30} \, \text{kg}$
+- Earth-Sun distance, $r_{\text{sun}} = 1.496 \times 10^{11} \, \text{m}$
 
-  Set total mechanical energy to zero:
-  $$
-  \frac{1}{2}mv_2^2 - \frac{G M m}{R} = 0
-  $$
-  Solving:
-  $$
-  v_2 = \sqrt{\frac{2 G M}{R}} = \sqrt{2} \cdot v_1
-  $$
+We can now compute the cosmic velocities for Earth.
+
+1. **First Cosmic Velocity ($v_1$)**:
+
+$$
+v_1 = \sqrt{\frac{G M_{\text{Earth}}}{R_{\text{Earth}}}} \approx 7.91 \, \text{km/s}
+$$
+
+2. **Second Cosmic Velocity ($v_2$)**:
+
+$$
+v_2 = \sqrt{\frac{2 G M_{\text{Earth}}}{R_{\text{Earth}}}} \approx 11.2 \, \text{km/s}
+$$
+
+3. **Third Cosmic Velocity ($v_3$)**:
+
+$$
+v_3 = \sqrt{\frac{2 G M_{\text{sun}}}{r_{\text{sun}}}} \approx 42.1 \, \text{km/s}
+$$
 
 ---
 
-### 🌞 Third Cosmic Velocity ($v_3$) — Solar System Escape
+## **Visual/Data Comparison with Moon, Mars, and Jupiter**
 
-- **Definition**: Minimum velocity needed to escape the gravitational field of the Sun, starting from Earth's orbit.
+We now compare the cosmic velocities for **Earth, Moon, Mars**, and **Jupiter**. Below are the relevant properties of each body:
 
-- **Derivation** (relative to Sun, neglecting Earth's gravity):
-  $$
-  v_3 = \sqrt{\frac{2 G M_{sun}}{r_{earth\_orbit}}}
-  $$
+### Data for the planets and moons:
 
----
+- **Moon**:
+  - Radius: $R_{\text{Moon}} = 1.737 \times 10^6 \, \text{m}$
+  - Mass: $M_{\text{Moon}} = 7.35 \times 10^{22} \, \text{kg}$
+  - Distance from Earth: $r_{\text{Earth-Moon}} = 384,400 \, \text{km}$ (we will consider Earth's escape velocity for comparison)
 
-## 🌍 Earth: Numerical Values
+- **Mars**:
+  - Radius: $R_{\text{Mars}} = 3.396 \times 10^6 \, \text{m}$
+  - Mass: $M_{\text{Mars}} = 6.42 \times 10^{23} \, \text{kg}$
 
-Using:
-- $G = 6.674 \times 10^{-11} \ \text{m}^3\text{kg}^{-1}\text{s}^{-2}$
-- $M_{earth} = 5.97 \times 10^{24} \ \text{kg}$
-- $R_{earth} = 6.371 \times 10^6 \ \text{m}$
+- **Jupiter**:
+  - Radius: $R_{\text{Jupiter}} = 6.991 \times 10^7 \, \text{m}$
+  - Mass: $M_{\text{Jupiter}} = 1.90 \times 10^{27} \, \text{kg}$
 
-- **First cosmic velocity**:
-$$
-v_1 = \sqrt{\frac{G M}{R}} \approx 7.91 \ \text{km/s}
-$$
-
-- **Second cosmic velocity**:
-$$
-v_2 = \sqrt{2} \cdot v_1 \approx 11.2 \ \text{km/s}
-$$
-
-- **Third cosmic velocity** (escape from Sun at Earth’s orbit):
-$$
-v_3 = \sqrt{\frac{2 G M_{sun}}{r_{earth\_orbit}}} \approx 42.1 \ \text{km/s}
-$$
-
+These values can be used to compute the cosmic velocities for **Moon**, **Mars**, and **Jupiter** using the same formulas as above.
 
 ---
 
-## 🌐 Comparison Table
+Let me know if you need any more adjustments or if I can assist you further with anything else!
 
-| Body     | Radius (m)         | Mass (kg)           | $v_1$ (km/s) | $v_2$ (km/s) |
-|----------|--------------------|----------------------|--------------|--------------|
-| Earth    | $6.371 \times 10^6$ | $5.97 \times 10^{24}$ | 7.91         | 11.2         |
-| Moon     | $1.74 \times 10^6$  | $7.35 \times 10^{22}$ | 1.68         | 2.38         |
-| Mars     | $3.39 \times 10^6$  | $6.42 \times 10^{23}$ | 3.55         | 5.03         |
-| Jupiter  | $7.15 \times 10^7$  | $1.90 \times 10^{27}$ | 42.1         | 59.5         |
 
 ---
 
