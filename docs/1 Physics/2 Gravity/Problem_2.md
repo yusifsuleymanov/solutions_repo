@@ -25,6 +25,8 @@ v_1 = \sqrt{\frac{G M}{R}}
 $$
 
 
+
+
 ---
 
 ### 🚀 Second Cosmic Velocity ($v_2$) — Escape Velocity
