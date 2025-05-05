@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 3 - Physics and Mathematics</title>
+<title>Problem 3: Trajectories of a Freely Released Payload Near Earth - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 3";
+        var mkdocs_page_name = "Problem 3: Trajectories of a Freely Released Payload Near Earth";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_3.md";
         var mkdocs_page_url = null;
       </script>
@@ -58,8 +58,30 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Gravity Problem 2: Derivation of Three Cosmic Velocities</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3: Trajectories of a Freely Released Payload Near Earth</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#task-overview">Task Overview</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gravitational-forces-and-trajectory-analysis">Gravitational Forces and Trajectory Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#fundamental-equations">Fundamental Equations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-methods-for-simulation">Numerical Methods for Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#simulating-the-trajectories">Simulating the Trajectories:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-code-for-trajectory-simulation">Python Code for Trajectory Simulation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_2"></a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +185,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 3</li>
+<li class="breadcrumb-item active">Problem 3: Trajectories of a Freely Released Payload Near Earth</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +193,200 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
+<h1 id="problem-3-trajectories-of-a-freely-released-payload-near-earth">Problem 3: Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="motivation"><strong>Motivation</strong></h2>
+<p>When an object is released from a moving rocket near Earth, its trajectory depends on initial conditions and gravitational forces. This scenario blends principles of orbital mechanics and numerical methods. Understanding the possible trajectories (parabolic, hyperbolic, elliptical) of such a payload is vital for space missions, such as deploying payloads or returning objects to Earth.</p>
+<h3 id="task-overview"><strong>Task Overview</strong></h3>
+<ul>
+<li>Analyze the possible trajectories of a payload released near Earth (parabolic, hyperbolic, elliptical).</li>
+<li>Perform a numerical analysis to compute the path of the payload based on given initial conditions (position, velocity, and altitude).</li>
+<li>Discuss how these trajectories relate to orbital insertion, reentry, or escape scenarios.</li>
+<li>Develop a computational tool to simulate and visualize the motion of the payload under Earth's gravity, accounting for initial velocities and directions.</li>
+</ul>
+<h2 id="gravitational-forces-and-trajectory-analysis"><strong>Gravitational Forces and Trajectory Analysis</strong></h2>
+<h3 id="fundamental-equations"><strong>Fundamental Equations</strong></h3>
+<ol>
+<li><strong>Gravitational Force:</strong>
+   The force between two masses is given by Newton's Law of Gravitation:</li>
+</ol>
+<p>$$
+   F = \frac{G M m}{r^2}
+   $$</p>
+<p>Where:
+   - <span class="arithmatex">\(F\)</span> is the gravitational force.
+   - <span class="arithmatex">\(G\)</span> is the gravitational constant.
+   - <span class="arithmatex">\(M\)</span> is the mass of the Earth.
+   - <span class="arithmatex">\(m\)</span> is the mass of the payload.
+   - <span class="arithmatex">\(r\)</span> is the distance between the payload and the center of the Earth.</p>
+<ol>
+<li><strong>Potential Energy:</strong>
+   The gravitational potential energy is:</li>
+</ol>
+<p>$$
+   U = - \frac{G M m}{r}
+   $$</p>
+<ol>
+<li><strong>Kinetic Energy:</strong>
+   The kinetic energy is:</li>
+</ol>
+<p>$$
+   K = \frac{1}{2} m v^2
+   $$</p>
+<ol>
+<li><strong>Total Energy:</strong>
+   The total energy of the system is the sum of kinetic and potential energies:</li>
+</ol>
+<p>$$
+   E_{\text{total}} = K + U = \frac{1}{2} m v^2 - \frac{G M m}{r}
+   $$</p>
+<p>Depending on the value of <span class="arithmatex">\(E_{\text{total}}\)</span>, the trajectory of the payload can be:
+   - <strong>Elliptical:</strong> If <span class="arithmatex">\(E_{\text{total}} &lt; 0\)</span>.
+   - <strong>Parabolic:</strong> If <span class="arithmatex">\(E_{\text{total}} = 0\)</span>.
+   - <strong>Hyperbolic:</strong> If <span class="arithmatex">\(E_{\text{total}} &gt; 0\)</span>.</p>
+<h3 id="numerical-methods-for-simulation"><strong>Numerical Methods for Simulation</strong></h3>
+<p>To simulate the trajectory, we need to solve the following set of equations using numerical methods like Euler's method or Runge-Kutta method:</p>
+<ol>
+<li><strong>Position and Velocity Equations:</strong></li>
+<li>Newton's second law: <span class="arithmatex">\(F = ma\)</span>.</li>
+<li>For a moving object in two dimensions, we can write:<ul>
+<li><span class="arithmatex">\(\ddot{x} = - \frac{G M x}{(x^2 + y^2)^{3/2}}\)</span></li>
+<li><span class="arithmatex">\(\ddot{y} = - \frac{G M y}{(x^2 + y^2)^{3/2}}\)</span></li>
+</ul>
+</li>
+</ol>
+<p>Where:
+- <span class="arithmatex">\((x, y)\)</span> are the position coordinates of the payload.
+- <span class="arithmatex">\(\ddot{x}\)</span> and <span class="arithmatex">\(\ddot{y}\)</span> are the accelerations in the <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> directions.</p>
+<ol>
+<li><strong>Initial Conditions:</strong></li>
+<li>Initial position <span class="arithmatex">\((x_0, y_0)\)</span>.</li>
+<li>Initial velocity <span class="arithmatex">\((v_{x0}, v_{y0})\)</span>.</li>
+</ol>
+<h3 id="simulating-the-trajectories"><strong>Simulating the Trajectories:</strong></h3>
+<p>We'll implement the simulation using Python and visualize the resulting trajectories.</p>
+<h2 id="python-code-for-trajectory-simulation"><strong>Python Code for Trajectory Simulation</strong></h2>
+<h2 id="_1"><img alt="alt text" src="../image-12.png"/></h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M = 5.97e24  # Mass of Earth (kg)
+radius_earth = 6.371e6  # Radius of Earth (m)
+
+# Time parameters
+dt = 100  # Time step (seconds)
+T = 3600 * 24  # Total time of simulation (1 day)
+
+# Initial conditions: (initial position, initial velocity)
+initial_conditions = {
+    'x0': 1.5 * radius_earth,  # 1.5 Earth radii from Earth's center (m)
+    'y0': 0,  # Along the x-axis (horizontal direction)
+    'vx0': 0,  # Initial velocity in x-direction (m/s)
+    'vy0': 5000  # Initial velocity in y-direction (m/s)
+}
+
+# Function to compute acceleration due to gravity
+def gravity_acceleration(x, y):
+    r = np.sqrt(x**2 + y**2)  # Distance from Earth's center
+    a = -G * M / r**2  # Gravitational acceleration
+    ax = a * x / r  # Acceleration in x-direction
+    ay = a * y / r  # Acceleration in y-direction
+    return ax, ay
+
+# Initialize position and velocity arrays
+x, y = [initial_conditions['x0']], [initial_conditions['y0']]
+vx, vy = [initial_conditions['vx0']], [initial_conditions['vy0']]
+
+# Numerical integration using Euler's method
+for t in np.arange(0, T, dt):
+    ax, ay = gravity_acceleration(x[-1], y[-1])  # Get acceleration at current position
+    # Update velocities
+    vx.append(vx[-1] + ax * dt)
+    vy.append(vy[-1] + ay * dt)
+    # Update positions
+    x.append(x[-1] + vx[-1] * dt)
+    y.append(y[-1] + vy[-1] * dt)
+
+# Convert the results into numpy arrays for easier plotting
+x = np.array(x)
+y = np.array(y)
+
+# Plot the trajectory
+plt.figure(figsize=(8, 6))
+plt.plot(x / 1e3, y / 1e3)  # Convert to km for visualization
+plt.scatter([0], [0], color='orange', label='Earth')  # Plot Earth at origin
+plt.title('Payload Trajectory Near Earth')
+plt.xlabel('X Position (km)')
+plt.ylabel('Y Position (km)')
+plt.grid(True)
+plt.legend()
+plt.axis('equal')
+plt.show()
+</code></pre>
+<h2 id="_2"><img alt="alt text" src="../image-13.png"/></h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # gravitational constant, m^3/kg/s^2
+M_earth = 5.972e24  # mass of Earth, kg
+R_earth = 6.371e6  # radius of Earth, m
+
+# Simulation parameters
+initial_altitude = 800e3  # 800 km above Earth's surface
+initial_position = np.array([R_earth + initial_altitude, 0])  # on the x-axis
+initial_speeds = np.arange(5e3, 13.5e3, 0.5e3)  # speeds from 5 km/s to 13 km/s
+dt = 1  # time step in seconds
+simulation_time = 8000  # total simulation time in seconds
+steps = int(simulation_time / dt)
+
+# Create figure
+plt.figure(figsize=(10, 10))
+
+# Earth
+earth = plt.Circle((0, 0), R_earth, color='blue', label='Earth')
+plt.gca().add_patch(earth)
+
+# Simulation function
+def simulate_trajectory(v0):
+    r = initial_position.copy()
+    v = np.array([0, v0])  # velocity perpendicular to radius (tangential)
+
+    x_vals, y_vals = [], []
+
+    for _ in range(steps):
+        r_mag = np.linalg.norm(r)
+        if r_mag &lt; R_earth:
+            break  # collision with Earth
+
+        a = -G * M_earth * r / r_mag**3
+        v += a * dt
+        r += v * dt
+
+        x_vals.append(r[0])
+        y_vals.append(r[1])
+
+    return np.array(x_vals), np.array(y_vals)
+
+# Simulate and plot trajectories for different velocities
+colors = plt.cm.viridis(np.linspace(0, 1, len(initial_speeds)))
+for i, speed in enumerate(initial_speeds):
+    x_traj, y_traj = simulate_trajectory(speed)
+    plt.plot(x_traj, y_traj, color=colors[i], label=f'{speed/1e3:.1f} km/s')
+
+# Formatting plot
+plt.xlabel('x (m)')
+plt.ylabel('y (m)')
+plt.title('Payload Trajectories from 800 km Altitude with Different Initial Velocities')
+plt.axis('equal')
+plt.xlim(-2e7, 2e7)
+plt.ylim(-2e7, 2e7)
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
