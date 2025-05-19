@@ -235,6 +235,38 @@ plt.axis('equal')
 plt.grid(True)
 plt.show()
 ```
+![alt text](image-3.png)
+---
+```python
+# Source positions
+source1 = (-1, 0)
+source2 = (1, 0)
+
+# Distances from each source
+r1 = np.sqrt((X - source1[0])**2 + (Y - source1[1])**2)
+r2 = np.sqrt((X - source2[0])**2 + (Y - source2[1])**2)
+
+# Wave functions
+wave1 = np.sin(k * r1 - omega * t)
+wave2 = np.sin(k * r2 - omega * t)
+
+# Superposed wave
+wave_total = wave1 + wave2
+
+# Plotting
+plt.figure(figsize=(6,6))
+plt.contourf(X, Y, wave_total, levels=100, cmap='seismic')
+plt.plot(*source1, 'ko')
+plt.plot(*source2, 'ko', label='Sources')
+plt.colorbar(label='Wave Displacement')
+plt.title('2D Interference from 2 Wave Sources')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.axis('equal')
+plt.grid(True)
+plt.show()
+```
 ![alt text](image-2.png)
 ---
 ```python
