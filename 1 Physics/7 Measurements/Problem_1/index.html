@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>📊 Measurements - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "\ud83d\udcca Measurements";
         var mkdocs_page_input_path = "1 Physics/7 Measurements/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -90,8 +90,10 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">7 Measurements</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">📊 Measurements</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-1">📌 Problem 1</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +165,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">7 Measurements</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">📊 Measurements</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +173,178 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="measurements">📊 Measurements</h1>
+<h2 id="problem-1">📌 Problem 1</h2>
+<h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
+<hr/>
+<h2 id="motivation">🔷 Motivation:</h2>
+<p>The acceleration <span class="arithmatex">\(g\)</span> due to gravity is a fundamental constant that influences a wide range of physical phenomena. Measuring <span class="arithmatex">\(g\)</span> accurately is crucial for understanding gravitational interactions, designing structures, and conducting experiments in various fields. One classic method for determining <span class="arithmatex">\(g\)</span> is through the oscillations of a simple pendulum, where the period of oscillation depends on the local gravitational field.</p>
+<hr/>
+<h2 id="task">🔷 Task:</h2>
+<p>Measure the acceleration <span class="arithmatex">\(g\)</span> due to gravity using a pendulum and in details analyze the uncertainties in the measurements.</p>
+<p>This exercise emphasizes rigorous measurement practices, uncertainty analysis, and their role in experimental physics.</p>
+<hr/>
+<h2 id="procedure">🔷 Procedure:</h2>
+<h3 id="1-materials">1. Materials:</h3>
+<ul>
+<li>A string (1 or 1.5 meters long).</li>
+<li>A small weight (e.g., bag of coins, bag of sugar, key chain) mounted on the string.</li>
+<li>Stopwatch (or smartphone timer).</li>
+<li>Ruler or measuring tape.</li>
+</ul>
+<hr/>
+<h3 id="2-setup">2. Setup:</h3>
+<ul>
+<li>Attach the weight to the string and fix the other end to a sturdy support.</li>
+<li>Measure the length of the pendulum, <span class="arithmatex">\(L\)</span>, from the suspension point to the center of the weight using a ruler or measuring tape.</li>
+<li>Record the resolution of the measuring tool and calculate the uncertainty as:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\Delta L = \frac{\text{resolution}}{2}\)</span>\)</span></p>
+<hr/>
+<h3 id="3-data-collection">3. Data Collection:</h3>
+<ul>
+<li>Displace the pendulum slightly (<span class="arithmatex">\(&lt;15^\circ\)</span>) and release it.</li>
+<li>Measure the time for 10 full oscillations (<span class="arithmatex">\(T_{10}\)</span>) and repeat this process 10 times.</li>
+<li>Record all 10 measurements: <span class="arithmatex">\(T_1\)</span>, <span class="arithmatex">\(T_2\)</span>, ..., <span class="arithmatex">\(T_{10}\)</span>.</li>
+<li>Calculate the mean time for 10 oscillations:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\overline{T_{10}} = \frac{1}{10} \sum_{i=1}^{10} T_i\)</span>\)</span></p>
+<ul>
+<li>Determine the standard deviation:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\sigma_T = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n}(T_i - \overline{T_{10}})^2}\)</span>\)</span></p>
+<ul>
+<li>Uncertainty in the mean time:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\Delta T = \frac{\sigma_T}{\sqrt{n}}\)</span>\)</span></p>
+<hr/>
+<h2 id="calculations">🧮 Calculations:</h2>
+<h3 id="1-calculate-the-period">1. Calculate the period:</h3>
+<div class="arithmatex">\[T = \frac{\overline{T_{10}}}{10} \quad \text{and} \quad \Delta T = \frac{\Delta T_{10}}{10}\]</div>
+<h3 id="2-determine-g">2. Determine <span class="arithmatex">\(g\)</span>:</h3>
+<div class="arithmatex">\[g = \frac{4\pi^2L}{T^2}\]</div>
+<h3 id="3-propagate-uncertainties">3. Propagate uncertainties:</h3>
+<div class="arithmatex">\[\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2\frac{\Delta T}{T}\right)^2}\]</div>
+<hr/>
+<h2 id="analysis">🔷 Analysis:</h2>
+<h3 id="1-compare-your-measured-g-with-the-standard-value-981-textms2">1. Compare your measured <span class="arithmatex">\(g\)</span> with the standard value (<span class="arithmatex">\(9.81\ \text{m/s}^2\)</span>).</h3>
+<h3 id="2-discuss">2. Discuss:</h3>
+<ul>
+<li>The effect of measurement resolution on <span class="arithmatex">\(\Delta L\)</span>.</li>
+<li>Variability in timing and its impact on <span class="arithmatex">\(\Delta T\)</span>.</li>
+<li>Any assumptions or experimental limitations.</li>
+</ul>
+<hr/>
+<h2 id="deliverables">🔷 Deliverables:</h2>
+<h3 id="1-tabulated-data-in-markdown">1. Tabulated data in markdown:</h3>
+<ul>
+<li><span class="arithmatex">\(L\)</span>, <span class="arithmatex">\(\Delta L\)</span>, <span class="arithmatex">\(T_{10}\)</span> measurements, <span class="arithmatex">\(\overline{T_{10}}\)</span>, <span class="arithmatex">\(\sigma_T\)</span>, <span class="arithmatex">\(\Delta T\)</span></li>
+<li>Calculated <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\Delta g\)</span></li>
+</ul>
+<h3 id="2-the-discussion-on-sources-of-uncertainty-and-their-impact-on-the-results">2. The discussion on sources of uncertainty and their impact on the results.</h3>
+<h2 id="_1"><img alt="alt text" src="../image-3.png"/></h2>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data: 10 trials of time for 10 oscillations (in seconds)
+times_10_oscillations = np.array([20.15, 20.22, 20.18, 20.20, 20.17,
+                                  20.19, 20.21, 20.16, 20.23, 20.18])
+
+# Calculate mean and standard deviation
+mean_time = np.mean(times_10_oscillations)
+std_dev = np.std(times_10_oscillations, ddof=1)
+uncertainty_mean = std_dev / np.sqrt(len(times_10_oscillations))
+
+# Plot
+plt.figure(figsize=(10, 5))
+plt.errorbar(range(1, 11), times_10_oscillations, yerr=0.1, fmt='o', label='Measured Time (10 Oscillations)')
+plt.axhline(mean_time, color='red', linestyle='--', label=f'Mean = {mean_time:.2f} s')
+plt.fill_between(range(1, 11),
+                 mean_time - uncertainty_mean,
+                 mean_time + uncertainty_mean,
+                 color='red', alpha=0.2, label='Uncertainty in Mean')
+
+# Styling
+plt.title('Pendulum Time Measurements (10 Oscillations)')
+plt.xlabel('Trial Number')
+plt.ylabel('Time (s)')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+
+# Show plot
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image.png"/>
+<img alt="alt text" src="../image-1.png"/>
+<img alt="alt text" src="../image-2.png"/></p>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# === Replace this with YOUR real data ===
+times_10_oscillations = np.array([20.12, 20.18, 20.15, 20.20, 20.17, 
+                                  20.22, 20.19, 20.16, 20.21, 20.14])  # example data
+L = 1.00  # pendulum length in meters (replace with your real value)
+resolution = 0.01  # measurement resolution in meters (replace with your ruler's value)
+# =========================================
+
+# Derived values
+T10_mean = np.mean(times_10_oscillations)
+T10_std = np.std(times_10_oscillations, ddof=1)
+T_mean = T10_mean / 10
+T_uncertainty = T10_std / (np.sqrt(len(times_10_oscillations)) * 10)
+
+# Uncertainty in L
+delta_L = resolution / 2
+
+# Gravitational acceleration
+g = 4 * np.pi**2 * L / T_mean**2
+
+# Uncertainty in g
+delta_g = g * np.sqrt((delta_L / L)**2 + (2 * T_uncertainty / T_mean)**2)
+
+# === Print Summary ===
+print(f"Mean time for 10 oscillations: {T10_mean:.3f} s")
+print(f"Standard deviation (10 osc): {T10_std:.3f} s")
+print(f"Period (T): {T_mean:.4f} s ± {T_uncertainty:.4f} s")
+print(f"g = {g:.3f} m/s² ± {delta_g:.3f} m/s²")
+
+# === Plot 1: Time vs Trial ===
+plt.figure(figsize=(10, 4))
+plt.plot(range(1, 11), times_10_oscillations, 'o-', label='Measured time (10 osc)')
+plt.axhline(T10_mean, color='red', linestyle='--', label=f'Mean = {T10_mean:.2f}s')
+plt.xlabel('Trial')
+plt.ylabel('Time for 10 Oscillations (s)')
+plt.title('Pendulum Oscillation Times')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+
+# === Plot 2: Histogram ===
+plt.figure(figsize=(6, 4))
+plt.hist(times_10_oscillations, bins=5, color='skyblue', edgecolor='black')
+plt.axvline(T10_mean, color='red', linestyle='--', label='Mean')
+plt.xlabel('Time (s)')
+plt.ylabel('Frequency')
+plt.title('Distribution of Timing Measurements')
+plt.legend()
+plt.tight_layout()
+
+# === Plot 3: g with Uncertainty Bar ===
+plt.figure(figsize=(4, 6))
+plt.errorbar(1, g, yerr=delta_g, fmt='o', capsize=10, label=f'g = {g:.2f} ± {delta_g:.2f} m/s²')
+plt.axhline(9.81, color='green', linestyle='--', label='Standard g = 9.81 m/s²')
+plt.xlim(0.5, 1.5)
+plt.ylabel('g (m/s²)')
+plt.xticks([])
+plt.title('Measured vs Standard g')
+plt.legend()
+plt.tight_layout()
+
+# === Show all plots ===
+plt.show()
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
