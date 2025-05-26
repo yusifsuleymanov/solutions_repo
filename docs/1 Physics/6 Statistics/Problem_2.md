@@ -58,52 +58,47 @@ To estimate π using this geometric probability:
 - The larger the number of points $N_{total}$, the more accurate the estimation.
 - This method visually and intuitively links **geometry, probability, and numerical approximation**.
 ---
-![alt text](image-4.png)
+![alt text](image-10.png)
 ---
 ```python
-# 🧪 Monte Carlo Estimation of Pi using Circle Method
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Number of random points to generate
-N = 10000  # You can increase this for better accuracy
+def estimate_pi(num_points):
+    # Generate random points in the square [-1,1] x [-1,1]
+    x = np.random.uniform(-1, 1, num_points)
+    y = np.random.uniform(-1, 1, num_points)
+    
+    # Check if points are inside the unit circle
+    inside_circle = x**2 + y**2 <= 1
+    
+    # Estimate pi: ratio of points inside circle * area of square (which is 4)
+    pi_estimate = 4 * np.sum(inside_circle) / num_points
+    
+    return x, y, inside_circle, pi_estimate
 
-# Generate random (x, y) points in [-1, 1] x [-1, 1]
-x = np.random.uniform(-1, 1, N)
-y = np.random.uniform(-1, 1, N)
+# Number of points for the simulation
+N = 10000
+x, y, inside, pi_val = estimate_pi(N)
 
-# Check if points fall inside the unit circle (x^2 + y^2 <= 1)
-inside_circle = x**2 + y**2 <= 1
+# Plotting
+plt.figure(figsize=(6,6))
+plt.scatter(x[inside], y[inside], color='blue', s=1, label='Inside circle')
+plt.scatter(x[~inside], y[~inside], color='red', s=1, label='Outside circle')
 
-# Count how many are inside the circle
-points_inside = np.sum(inside_circle)
+# Draw the unit circle boundary
+circle = plt.Circle((0, 0), 1, color='green', fill=False, linewidth=2, label='Unit circle')
+plt.gca().add_artist(circle)
 
-# Estimate pi using the Monte Carlo formula
-pi_estimate = 4 * points_inside / N
+plt.title(f"Monte Carlo Estimation of $\pi$\nEstimated $\pi$ = {pi_val:.6f} using {N} points")
+plt.xlabel('x')
+plt.ylabel('y')
+plt.axis('square')
+plt.legend(loc='upper right')
 
-# Print result
-print(f"Estimated π: {pi_estimate}")
-print(f"Actual π: {np.pi}")
-print(f"Error: {abs(np.pi - pi_estimate)}")
+# Add text annotation with computed pi value inside the plot
+plt.text(-0.95, 0.9, f"Estimated $\pi$: {pi_val:.6f}", fontsize=12, bbox=dict(facecolor='white', alpha=0.8))
 
-# 🎨 Visualization
-fig, ax = plt.subplots(figsize=(6, 6))
-ax.set_aspect('equal')
-ax.set_title('Monte Carlo Estimation of π')
-
-# Plot points
-ax.scatter(x[inside_circle], y[inside_circle], color='blue', s=1, label='Inside Circle')
-ax.scatter(x[~inside_circle], y[~inside_circle], color='red', s=1, label='Outside Circle')
-
-# Draw the unit circle boundary for reference
-circle = plt.Circle((0, 0), 1, color='black', fill=False, linewidth=2, label='Unit Circle')
-ax.add_patch(circle)
-
-# Set limits and labels
-ax.set_xlim(-1, 1)
-ax.set_ylim(-1, 1)
-ax.legend(loc='upper right')
-plt.grid(True)
 plt.show()
 ```
 ### 🖥 2. Simulation
@@ -347,136 +342,7 @@ $$
 \hat{\pi} = \frac{2 L N}{d C}
 $$
 ---
-![alt text](image-6.png)
----
-```python
-import numpy as np
-import matplotlib.pyplot as plt
 
-def simulate_buffon(L=1.0, d=1.5, num_drops=10000):
-    """
-    Estimate π using Buffon's Needle method.
-    
-    Parameters:
-    - L: needle length
-    - d: spacing between the parallel lines (should be ≥ L)
-    - num_drops: total needle throws
-    
-    Returns:
-    - pi_approx: estimated value of π
-    - did_cross: boolean array indicating crossing needles
-    - centers, thetas: arrays of needle center x-coordinates and angles
-    """
-    centers = np.random.uniform(0, d/2, num_drops)
-    thetas = np.random.uniform(-np.pi/2, np.pi/2, num_drops)
-    did_cross = centers <= (L/2) * np.abs(np.sin(thetas))
-    hits = np.count_nonzero(did_cross)
-    pi_approx = (2 * L * num_drops) / (d * hits) if hits > 0 else np.nan
-    
-    return pi_approx, did_cross, centers, thetas
-
-def visualize_needles(centers, thetas, did_cross, L=1.0, d=1.5, x_limit=None):
-    """
-    Plot the result of Buffon's Needle simulation:
-    - Show parallel lines
-    - Plot needles in two colors based on crossing
-    
-    Parameters:
-    - centers, thetas: x positions and angles of needles
-    - did_cross: array indicating if needle crosses a line
-    - L: length of each needle
-    - d: distance between the lines
-    - x_limit: max x-axis value for plotting
-    """
-    if x_limit is None:
-        x_limit = np.max(centers) + d
-
-    plt.figure(figsize=(10, 5))
-    plt.title("Buffon's Needle Experiment")
-
-    # Draw the parallel lines
-    num_lines = int(np.ceil(x_limit / d)) + 1
-    for i in range(num_lines):
-        plt.axvline(i * d, color='gray', linestyle=':', linewidth=1.2)
-    
-    y_offset = 0
-    for x, theta, cross in zip(centers, thetas, did_cross):
-        dx = (L/2) * np.cos(theta)
-        dy = (L/2) * np.sin(theta)
-        x0, x1 = x - dx, x + dx
-        y0, y1 = y_offset - dy, y_offset + dy
-        clr = 'orange' if cross else 'green'
-        plt.plot([x0, x1], [y0, y1], color=clr, lw=1.8)
-    
-    plt.xlim(0, x_limit)
-    plt.ylim(-L, L)
-    plt.xlabel("X Position")
-    plt.ylabel("Y Position")
-    plt.grid(True, linestyle='--', alpha=0.6)
-    plt.tight_layout()
-    plt.show()
-
-# Kullanım örneği:
-L = 1.0
-d = 1.5
-N = 10000
-
-pi_approx, did_cross, centers, thetas = simulate_buffon(L, d, N)
-print(f"π yaklaşık değeri ({N} deneme): {pi_approx:.6f}")
-
-# Görselleştirme (örnek 200 iğne)
-visualize_needles(centers[:200], thetas[:200], did_cross[:200], L, d)
-```
-![alt text](image-7.png)
----
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Parameters
-needle_length = 1.0       # Length of each needle
-line_spacing = 1.5        # Distance between parallel lines
-num_needles = 200         # Number of needles to visualize
-
-# Generate random horizontal positions for the centers
-center_x_positions = np.random.uniform(0, 6 * line_spacing, num_needles)
-
-# Generate random angles in [-π/2, π/2] for more variety
-needle_angles = np.random.uniform(-np.pi/2, np.pi/2, num_needles)
-
-# Calculate wrapped x values and determine crossings
-wrapped_positions = center_x_positions % line_spacing
-is_crossing = np.abs(wrapped_positions) <= (needle_length / 2) * np.abs(np.sin(needle_angles))
-
-# Set up the plot
-plt.figure(figsize=(11, 5))
-plt.title("Modified Buffon's Needle Visualization")
-
-# Draw dashed vertical lines
-x_max = np.max(center_x_positions) + line_spacing
-for x in np.arange(0, x_max, line_spacing):
-    plt.axvline(x, color='gray', linestyle='--', linewidth=1)
-
-# Plot each needle
-for x_center, angle, crossed in zip(center_x_positions, needle_angles, is_crossing):
-    dx = (needle_length / 2) * np.cos(angle)
-    dy = (needle_length / 2) * np.sin(angle)
-    
-    x0, x1 = x_center - dx, x_center + dx
-    y0, y1 = -dy, dy
-
-    needle_color = 'orange' if crossed else 'green'
-    plt.plot([x0, x1], [y0, y1], color=needle_color, linewidth=2)
-
-# Axis labels and limits
-plt.xlabel("X-axis (Needle Center Position)")
-plt.ylabel("Y-axis (Needle Projection)")
-plt.xlim(0, x_max)
-plt.ylim(-needle_length, needle_length)
-plt.grid(True, linestyle=':', alpha=0.7)
-plt.tight_layout()
-plt.show()
-```
 ## 4. Analysis
 
 We analyze the convergence behavior of the Buffon’s Needle simulation and compare it with the circle-based Monte Carlo method for estimating π.
