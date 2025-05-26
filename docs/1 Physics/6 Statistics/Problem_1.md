@@ -21,13 +21,13 @@ Before simulation, let us recall the **definitions** and **properties** of the c
 
 ### 1. Uniform Distribution
 
-- Continuous distribution with equal probability across the range $[a, b]$
+- Continuous distribution with equal probability across the range $[a,b]$
 - Probability Density Function (PDF):  
-  $$f(x) = \frac{1}{b - a}, \quad \text{for } a \leq x \leq b$$
+  $$f(x)=\frac{1}{b-a},\quad \text{for } a\leq x\leq b$$
 - Mean:  
-  $$\mu = \frac{a + b}{2}$$
+  $$\mu=\frac{a+b}{2}$$
 - Variance:  
-  $$\sigma^2 = \frac{(b - a)^2}{12}$$
+  $$\sigma^2=\frac{(b-a)^2}{12}$$
 
 ---
 
@@ -35,11 +35,11 @@ Before simulation, let us recall the **definitions** and **properties** of the c
 
 - Models the time between independent events (e.g., time between arrivals)
 - PDF:  
-  $$f(x) = \lambda e^{-\lambda x}, \quad \text{for } x \geq 0$$
+  $$f(x)=\lambda e^{-\lambda x},\quad \text{for } x\geq 0$$
 - Mean:  
-  $$\mu = \frac{1}{\lambda}$$
+  $$\mu=\frac{1}{\lambda}$$
 - Variance:  
-  $$\sigma^2 = \frac{1}{\lambda^2}$$
+  $$\sigma^2=\frac{1}{\lambda^2}$$
 
 ---
 
@@ -47,11 +47,12 @@ Before simulation, let us recall the **definitions** and **properties** of the c
 
 - Discrete distribution modeling number of successes in $n$ independent trials
 - Probability Mass Function (PMF):  
-  $$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
+  $$P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$$
 - Mean:  
-  $$\mu = np$$
+  $$\mu=np$$
 - Variance:  
-  $$\sigma^2 = np(1 - p)$$
+  $$\sigma^2=np(1-p)$$
+
 
 ---
 ![alt text](image.png)
