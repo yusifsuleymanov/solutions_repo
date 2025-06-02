@@ -347,6 +347,59 @@ $$
 
 We analyze the convergence behavior of the Buffon’s Needle simulation and compare it with the circle-based Monte Carlo method for estimating π.
 
+![alt text](image-11.png)
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set seed for reproducibility
+np.random.seed(7)
+
+def simulate_buffon_needle(trials, needle_length=1.0, line_spacing=1.0):
+    # Generate random center positions and angles
+    centers = np.random.uniform(0, line_spacing, trials)
+    angles = np.random.uniform(0, np.pi / 2, trials)
+    
+    # Check if each needle crosses a line
+    crosses_line = (needle_length / 2) * np.sin(angles) >= (centers % line_spacing)
+    hits = np.count_nonzero(crosses_line)
+    
+    # Calculate π estimate
+    pi_approx = (2 * trials) / hits if hits > 0 else float('inf')
+    
+    return centers, angles, crosses_line, pi_approx
+
+# Run the simulation
+num_trials = 1000
+centers, angles, crosses, pi_value = simulate_buffon_needle(num_trials)
+
+# Visualization
+plt.figure(figsize=(10, 4))
+for i in range(min(50, num_trials)):  # Only show up to 50 needles
+    cx = centers[i]
+    angle = angles[i]
+    x_start = cx - 0.5 * np.cos(angle)
+    x_end = cx + 0.5 * np.cos(angle)
+    y_start = -0.5 * np.sin(angle)
+    y_end = 0.5 * np.sin(angle)
+    
+    color = 'green' if crosses[i] else 'orange'
+    plt.plot([x_start, x_end], [y_start, y_end], color, alpha=0.6)
+
+# Draw the lines
+for x_pos in np.arange(0, 2, 1):
+    plt.axvline(x_pos, color='black', linestyle='--')
+
+plt.title(f"Buffon's Needle Simulation\nEstimated π ≈ {pi_value:.5f} (Trials = {num_trials})")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.gca().set_aspect('equal')
+plt.grid(True)
+plt.show()
+
+print(f"Estimated value of π: {pi_value}")
+```
+
 ---
 
 ### 🔍 Objectives
