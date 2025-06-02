@@ -76,6 +76,28 @@ $$\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2\frac{\Delta T}{
 
 ---
 
+Each value below represents the time for **10 complete oscillations** of the pendulum.
+
+| Trial | Time for 10 Oscillations ($T_{10}$) [s] |
+|-------|---------------------------|
+| 1     | 22.14                     |
+| 2     | 22.09                     |
+| 3     | 22.18                     |
+| 4     | 22.11                     |
+| 5     | 22.06                     |
+| 6     | 22.17                     |
+| 7     | 22.10                     |
+| 8     | 22.13                     |
+| 9     | 22.08                     |
+| 10    | 22.16                     |
+
+- **Mean Time for 10 Oscillations ($\overline{T}_{10}$):** 22.122 s  
+
+- **Standard Deviation ($\sigma_T$):** 0.041 s  
+
+- **Uncertainty in Mean Time ($\Delta T_{10}$):** 0.013 s ($\sigma_T/\sqrt{10}$)
+
+---
 ## 🔷 Analysis:
 
 ### 1. Compare your measured $g$ with the standard value ($9.81\ \text{m/s}^2$).
